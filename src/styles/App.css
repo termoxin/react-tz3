@@ -5,3 +5,30 @@
 	font-weight: 700;
 	font-size:20px;
 }
+.footer {
+	position:absolute;
+	bottom:0;
+	width:100%;
+	color: #fff;
+}
+.nav {
+	color: #fff;
+}
+.header {
+	font-size:30px;
+	color: #fff;
+}
+.header:hover {
+	text-decoration: none;
+	color: #fff;
+}
+.icon-delete {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.icon-edit {
+	position: absolute;
+	top: 40px;
+	right: 10px;
+}

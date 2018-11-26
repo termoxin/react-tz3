@@ -10,6 +10,7 @@ import {
   NavItem,
   Button
 } from 'reactstrap';
+import * as FontAwesome from 'react-icons/fa'
 
 
 class Navigation extends Component {
@@ -30,8 +31,8 @@ class Navigation extends Component {
         const { isAuth, user} = this.props
         return(
             <div className="nav">
-               <Navbar color="light" light>
-                  <Link to="/news">Главная</Link>
+               <Navbar color="dark" dark>
+                  <Link to="/news" className="header"><FontAwesome.FaHome /> Главная </Link>
                     <Nav navbar>
                       <NavItem>
                       {
@@ -42,7 +43,12 @@ class Navigation extends Component {
                             <GoogleLogout
                                 buttonText="Выйти"
                                 render={renderProps => (
-                                     <Button color="danger" onClick={renderProps.onClick}>Выйти</Button>
+                                     <Button 
+                                       color="danger" 
+                                       onClick={renderProps.onClick}
+                                     >
+                                       Выйти <FontAwesome.FaUserTimes /> 
+                                     </Button>
                                 )}
                                 onLogoutSuccess={this.logout}
                             />
@@ -51,7 +57,12 @@ class Navigation extends Component {
                                  clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                                  buttonText="Войти"
                                  render={renderProps => (
-                                    <Button color="primary" onClick={renderProps.onClick}>Войти</Button>
+                                    <Button 
+                                      color="primary" 
+                                      onClick={renderProps.onClick}
+                                    >
+                                      Войти <FontAwesome.FaUser />
+                                    </Button>
                                  )}
                                  onSuccess={this.authSuccess}
                                  onFailure={this.authError}
