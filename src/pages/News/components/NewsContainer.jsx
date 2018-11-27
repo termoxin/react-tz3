@@ -16,12 +16,12 @@ class NewsContainer extends Component {
 		})
 	}
     render() {
-    	const { news } = this.props
+    	const { news, user} = this.props
 
     	const loadingOrError = () => {
-    		if(news.error) return (
+    		if(user.error) return (
     			<Alert color="danger">
-       				{news.error}
+       				{user.error}
      	 		</Alert>
     		) 
 			return (

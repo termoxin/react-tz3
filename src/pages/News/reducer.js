@@ -7,9 +7,6 @@ function reducer(state={
 		case "GET_NEWS": {
 			return {...state, news: action.payload}
 		}
-		case "GET_NEWS_FAILURE": {
-			return {...state, error: action.payload}
-		}
 		default: {
 			return state
 		}

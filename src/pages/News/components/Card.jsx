@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { formatDate } from '../../../helpers/date'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Card, CardText, CardBody,
   CardTitle, CardSubtitle } from 'reactstrap'
 import * as FontAwesome from 'react-icons/fa'
@@ -15,7 +16,9 @@ export const CardItem = (props) => {
 		<div className="col-md-4">
 			<Card style={{ marginTop: 10 }}>
 			    <CardBody>
-			      <CardTitle>{props.title}</CardTitle>
+			      <CardTitle>
+			      	<Link to={'/news/' + props.id}>{props.title}</Link>
+			      </CardTitle>
 			      	<CardSubtitle><b>{props.creator}</b> | Created {formatDate(props.date)}</CardSubtitle>
 			      <CardText>{props.text}</CardText>
 			    </CardBody>

@@ -9,6 +9,9 @@ function reducer(state = {
 		case "USER_LOGOUT": {
 			return {...state, isAuth: false, user: null}
 		}
+		case "GET_NEWS_FAILURE": {
+			return {...state, error: action.payload}
+		}
 		default: {
 			return state
 		}

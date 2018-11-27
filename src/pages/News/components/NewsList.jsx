@@ -9,6 +9,7 @@ const NewsList = (props) => (
 				props.news.map(item => (
 					<CardItem
 						key={item._id} 
+						id={item._id}
 						title={item.title}
 						creator={item.creator.displayName}
 						date={item.createDate}
