@@ -1,5 +1,4 @@
 
-
 function reducer(state={
 	news: null
 }, action) {
