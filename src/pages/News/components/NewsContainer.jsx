@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { getFeeds } from '../actions'
 import { connect } from 'react-redux'
 import NewsList  from './NewsList'
+import { Route, Switch } from 'react-router-dom'
+import Article from './Article'
 import { Alert } from 'reactstrap'
 
 class NewsContainer extends Component {
@@ -32,13 +34,17 @@ class NewsContainer extends Component {
 
        return(
         <div className="news">
-            { 
-           	this.state.fetched 
-            ? 
-           	<NewsList news={news.news} />
-            :  
-            loadingOrError()
-        	}
+            <Switch>
+              <Route path="/news/:id" component={Article}/>
+              <Route path="/news/:id/edit" />
+              { 
+                this.state.fetched 
+                ? 
+                <NewsList news={news.news} />
+                :  
+                loadingOrError()
+              }
+            </Switch>
         </div>
        )
     }
