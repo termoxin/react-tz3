@@ -4,6 +4,7 @@ import { getANews } from '../actions'
 import { Alert } from 'reactstrap'
 import { formatDate } from '../../../helpers/date'
 import { Button } from 'reactstrap'
+import { deleteFeed, getFeeds } from '../actions'
 import * as FontAwesome from 'react-icons/fa'
 
 class Article extends Component {
@@ -25,6 +26,16 @@ class Article extends Component {
 		if(isAuth && user.user.user.givenName === creator.split(' ')[0]) return true
 		return false
 	}
+	deleteFeed = () => {
+		const id = this.props.Anews.feed._id
+		const token = this.props.user.user.token
+		this.props.deleteFeed(id, token, () => {
+			this.props.getFeeds(() => {
+				console.log('%с Deleted successfully!', 'color: green; font-weight:900')
+			})
+			this.props.history.push('/news')
+		})
+	}
 	render() {
 		const article = () => {
 			const { feed } = this.props.Anews
@@ -41,8 +52,8 @@ class Article extends Component {
 								<Button color="warning">
 									<FontAwesome.FaEdit /> Edit
 								</Button>
-								<Button color="danger">
-									<FontAwesome.FaTrash /> Delete
+								<Button color="danger" onClick={this.deleteFeed}>
+									<FontAwesome.FaTrash/> Delete
 								</Button>
 							</div>
 						}
@@ -67,7 +78,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-	getANews: (id, cb) => dispatch(getANews(id, cb))
+	getANews: (id, cb) => dispatch(getANews(id, cb)),
+	deleteFeed: (id, token, cb) => dispatch(deleteFeed(id, token, cb)),
+	getFeeds: (cb) => dispatch(getFeeds(cb))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article)

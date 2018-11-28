@@ -9,6 +9,9 @@ function reducer(state={
 		case "GET_A_NEWS": {
 			return {...state, Anews: action.payload}
 		}
+		case "DELETE_SUCCESS": {
+			return {...state}
+		}
 		default: {
 			return state
 		}
