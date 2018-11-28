@@ -41,4 +41,12 @@
 }
 .article span {
 	color: gray;
+	margin-top:10px;
+}
+.article p {
+	width: 80%;
+	margin-top: 20px;
+}
+.controls button {
+	margin: 0 10px 0 10px;
 }

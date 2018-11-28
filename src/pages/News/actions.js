@@ -1,10 +1,11 @@
 import axios from 'axios'
-import { GET_FEEDS } from '../../constants/api.js'
+import { GET_FEEDS, API_URL } from '../../constants/api.js'
 import { 
 	GET_NEWS, 
 	GET_NEWS_FAILURE, 
 	GET_A_NEWS, 
-	GET_A_NEWS_FAILURE 
+	GET_A_NEWS_FAILURE,
+	DELETE_THE_NEWS
 } from './actionTypes'
 import { checkResponse } from '../../helpers/network'
 
@@ -53,3 +54,4 @@ export const getFeeds = (cb) => {
 			.catch(error => dispatch(getFailure(error.message)))
 	}
 }
+

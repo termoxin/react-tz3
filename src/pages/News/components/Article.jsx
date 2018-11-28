@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getANews } from '../actions'
 import { Alert } from 'reactstrap'
 import { formatDate } from '../../../helpers/date'
+import { Button } from 'reactstrap'
+import * as FontAwesome from 'react-icons/fa'
 
 class Article extends Component {
 	constructor(props) {
@@ -19,6 +20,11 @@ class Article extends Component {
 			})
 		})
 	}
+	isAuthor = (creator) => {
+		const { isAuth, user } = this.props
+		if(isAuth && user.user.user.givenName === creator.split(' ')[0]) return true
+		return false
+	}
 	render() {
 		const article = () => {
 			const { feed } = this.props.Anews
@@ -27,6 +33,21 @@ class Article extends Component {
 					<h1>{feed.title}</h1>
 					<span>{feed.creator.displayName} | {formatDate(feed.createDate)}</span>
 					<p>{feed.content}</p>
+					<div className="controls">
+						{
+							this.isAuthor(feed.creator.displayName)
+							&& 
+							<div>
+								<Button color="warning">
+									<FontAwesome.FaEdit /> Edit
+								</Button>
+								<Button color="danger">
+									<FontAwesome.FaTrash /> Delete
+								</Button>
+							</div>
+						}
+						
+					</div>
 				</div>
 			)
 		}
@@ -40,7 +61,9 @@ class Article extends Component {
 }
 
 const mapStateToProps = state => ({
-	Anews: state.news.Anews
+	Anews: state.news.Anews,
+	user: state.user,
+	isAuth: state.user.isAuth
 })
 
 const mapDispatchToProps = dispatch => ({

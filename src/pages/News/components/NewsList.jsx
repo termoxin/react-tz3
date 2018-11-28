@@ -4,7 +4,7 @@ import CardItem from './Card'
 
 const NewsList = (props) => (
 	<div className="container">
-		<div className="row">
+		<div className="row row-eq-height">
 			{
 				props.news.map(item => (
 					<CardItem

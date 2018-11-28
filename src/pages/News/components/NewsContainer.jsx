@@ -18,7 +18,7 @@ class NewsContainer extends Component {
 		})
 	}
     render() {
-    	const { news, user} = this.props
+    	const { news, user } = this.props
 
     	const loadingOrError = () => {
     		if(user.error) return (
@@ -37,13 +37,13 @@ class NewsContainer extends Component {
             <Switch>
               <Route path="/news/:id" component={Article}/>
               <Route path="/news/:id/edit" />
-              { 
+              <Route path="/news" render={() => (
                 this.state.fetched 
                 ? 
                 <NewsList news={news.news} />
                 :  
                 loadingOrError()
-              }
+              )}/>
             </Switch>
         </div>
        )
