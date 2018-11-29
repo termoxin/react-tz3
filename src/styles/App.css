@@ -32,6 +32,9 @@
 	top: 40px;
 	right: 10px;
 }
+.icon {
+	cursor: pointer;
+}
 .article {
 	margin-top: 30px;
 	display:flex;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getANews } from '../actions'
 import { Alert } from 'reactstrap'
@@ -31,9 +32,8 @@ class Article extends Component {
 		const token = this.props.user.user.token
 		this.props.deleteFeed(id, token, () => {
 			this.props.getFeeds(() => {
-				console.log('%с Deleted successfully!', 'color: green; font-weight:900')
+				this.props.history.push('/news')
 			})
-			this.props.history.push('/news')
 		})
 	}
 	render() {
@@ -69,6 +69,13 @@ class Article extends Component {
 			</div>
 		)
 	}
+}
+
+Article.propTypes = {
+	deleteFeed: PropTypes.func,
+	getANews: PropTypes.func,
+	getFeeds: PropTypes.func,
+	user: PropTypes.object
 }
 
 const mapStateToProps = state => ({

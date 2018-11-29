@@ -4,6 +4,7 @@ import { formatDate } from '../../../helpers/date'
 import { shortString } from '../../../helpers/string'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { deleteFeed, getFeeds } from '../actions'
 import { Card, CardText, CardBody,
   CardTitle, CardSubtitle } from 'reactstrap'
 import * as FontAwesome from 'react-icons/fa'
@@ -15,8 +16,15 @@ export const CardItem = (props) => {
 		}
 		return false
 	}
+	const deleteOne = () => {
+		props.deleteFeed(props.id, props.user.user.token, () => {
+			props.getFeeds(() => {
+				console.log('%c Deleted successfully!', 'font-weight:700; color: red')
+			})
+		})
+	}
 	return (
-		<div className="col-md-4">
+		<div className="col-md-4 col-sm-6">
 			<Card style={{ marginTop: 10, height: '95%', width: '100%' }} >
 			    <CardBody>
 			      <CardTitle>
@@ -29,8 +37,11 @@ export const CardItem = (props) => {
 			    	isAuthor() 
 			    	&&
 			    	<div>
-			    		<FontAwesome.FaMinusCircle className="icon-delete" />
-			    		<FontAwesome.FaEdit className="icon-edit" />
+			    		<FontAwesome.FaMinusCircle 
+				    		className="icon icon-delete" 
+				    		onClick={deleteOne}
+			    		/>
+			    		<FontAwesome.FaEdit className="icon icon-edit" />
 			    	</div> 
 			    }
 		 	 </Card>
@@ -44,7 +55,9 @@ CardItem.propTypes = {
 	subtitle: PropTypes.string,
 	text: PropTypes.string,
 	creator: PropTypes.string,
-	date: PropTypes.string
+	date: PropTypes.string,
+	deleteFeed: PropTypes.func,
+	getFeeds: PropTypes.func
 }
 
 const mapStateToProps = state => ({
@@ -52,4 +65,9 @@ const mapStateToProps = state => ({
 	isAuth: state.user.isAuth
 })
 
-export default connect(mapStateToProps)(CardItem)
+const mapDispatchToProps = dispatch => ({
+	deleteFeed: (id, token, cb) => dispatch(deleteFeed(id, token, cb)),
+	getFeeds: cb => dispatch(getFeeds(cb))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardItem)
