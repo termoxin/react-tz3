@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getANews } from '../actions'
+import { Link } from 'react-router-dom'
 import { Alert } from 'reactstrap'
 import { formatDate } from '../../../helpers/date'
 import { Button } from 'reactstrap'
@@ -50,7 +51,9 @@ class Article extends Component {
 							&& 
 							<div>
 								<Button color="warning">
-									<FontAwesome.FaEdit /> Edit
+									<Link to={`/news/${feed._id}/edit`}>
+										<FontAwesome.FaEdit /> Edit
+									</Link>
 								</Button>
 								<Button color="danger" onClick={this.deleteFeed}>
 									<FontAwesome.FaTrash/> Delete

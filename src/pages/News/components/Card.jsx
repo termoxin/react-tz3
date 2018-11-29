@@ -41,7 +41,9 @@ export const CardItem = (props) => {
 				    		className="icon icon-delete" 
 				    		onClick={deleteOne}
 			    		/>
-			    		<FontAwesome.FaEdit className="icon icon-edit" />
+			    		<Link to={`/news/${props.id}/edit`}>
+			    			<FontAwesome.FaEdit className="icon icon-edit" />
+			    		</Link>
 			    	</div> 
 			    }
 		 	 </Card>

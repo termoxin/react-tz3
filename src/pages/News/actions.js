@@ -6,7 +6,9 @@ import {
 	GET_A_NEWS, 
 	GET_A_NEWS_FAILURE,
 	DELETE_FAILURE,
-	DELETE_SUCCESS
+	DELETE_SUCCESS,
+	EDIT_SUCCESS,
+	EDIT_FAILURE
 } from './actionTypes'
 import { checkResponse } from '../../helpers/network'
 
@@ -35,6 +37,15 @@ export const deleteSuccess = () => ({
 })
 
 export const deleteFailure = error => ({
+	type: DELETE_FAILURE,
+	payload: error
+})
+
+export const editSuccess = () => ({
+	type: DELETE_SUCCESS
+})
+
+export const editFailure = error => ({
 	type: DELETE_FAILURE,
 	payload: error
 })
@@ -79,5 +90,24 @@ export const deleteFeed = (id, token, cb) => {
 			}
 		})
 		.catch(error => dispatch(deleteFailure(error.message)))
+	}
+}
+
+export const editFeed = (id, feed, token, cb) => {
+	return function(dispatch) {
+		axios.out(API_URL + `/feeds/${id}/edit`, {
+			id,
+			feed
+			headers: {
+				'x-access-token': token
+			}
+		})
+		.then(response => {
+			if(checkResponse(response)) {
+				dispatch(editSuccess(response))
+				cb()
+			}
+		})
+		.catch(error => dispatch(editFailure(error.message)))
 	}
 }

@@ -12,6 +12,9 @@ function reducer(state={
 		case "DELETE_SUCCESS": {
 			return {...state}
 		}
+		case "EDIT_SUCCESS": {
+			return {...state}
+		}
 		default: {
 			return state
 		}

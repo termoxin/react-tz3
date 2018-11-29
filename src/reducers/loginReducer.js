@@ -15,6 +15,9 @@ function reducer(state = {
 		case "DELETE_FAILURE": {
 			return {...state, error: action.payload}
 		}
+		case "EDIT_FAILURE": {
+			return {...state, error: action.payload}
+		}
 		default: {
 			return state
 		}
