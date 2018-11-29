@@ -9,6 +9,7 @@ import { Button } from 'reactstrap'
 import { deleteFeed, getFeeds } from '../actions'
 import * as FontAwesome from 'react-icons/fa'
 
+
 class Article extends Component {
 	constructor(props) {
 		super(props)

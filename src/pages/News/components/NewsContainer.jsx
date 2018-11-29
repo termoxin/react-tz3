@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import NewsList  from './NewsList'
 import { Route, Switch } from 'react-router-dom'
 import Article from './Article'
+import ArticleEdit from './ArticleEdit'
 import { Alert } from 'reactstrap'
 
 class NewsContainer extends Component {
@@ -35,8 +36,8 @@ class NewsContainer extends Component {
        return(
         <div className="news">
             <Switch>
-              <Route path="/news/:id" component={Article}/>
-              <Route path="/news/:id/edit" />
+              <Route exact path="/news/:id" component={Article}/>
+              <Route exact path="/news/:id/edit" component={ArticleEdit}/>
               <Route path="/news" render={() => (
                 this.state.fetched 
                 ? 

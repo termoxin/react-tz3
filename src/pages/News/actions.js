@@ -42,11 +42,11 @@ export const deleteFailure = error => ({
 })
 
 export const editSuccess = () => ({
-	type: DELETE_SUCCESS
+	type: EDIT_SUCCESS
 })
 
 export const editFailure = error => ({
-	type: DELETE_FAILURE,
+	type: EDIT_FAILURE,
 	payload: error
 })
 
@@ -95,12 +95,10 @@ export const deleteFeed = (id, token, cb) => {
 
 export const editFeed = (id, feed, token, cb) => {
 	return function(dispatch) {
-		axios.out(API_URL + `/feeds/${id}/edit`, {
-			id,
-			feed
-			headers: {
-				'x-access-token': token
-			}
+		axios(API_URL + `/feeds/${id}`, {
+			method: 'PUT',
+			data: feed,
+			headers: {'x-access-token': token }
 		})
 		.then(response => {
 			if(checkResponse(response)) {
