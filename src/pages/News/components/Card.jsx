@@ -11,27 +11,34 @@ import * as FontAwesome from 'react-icons/fa'
 
 export const CardItem = (props) => {
 	const isAuthor = () => {
-		if(props.isAuth && props.user.user.user.givenName === props.creator.split(' ')[0]) {
+		const { isAuth, user, creator } = props
+
+		if(isAuth && user.user.givenName === creator.split(' ')[0]) {
 			return true
 		}
 		return false
 	}
 	const deleteOne = () => {
-		props.deleteFeed(props.id, props.user.user.token, () => {
+		const { deleteFeed, id, user } = props
+
+		deleteFeed(id, user.token, () => {
 			props.getFeeds(() => {
 				console.log('%c Deleted successfully!', 'font-weight:700; color: red')
 			})
 		})
 	}
+
+	const { id, title, creator, date, text } = props
+
 	return (
 		<div className="col-md-4 col-sm-6">
 			<Card style={{ marginTop: 10, height: '95%', width: '100%' }} >
 			    <CardBody>
 			      <CardTitle>
-			      	<Link to={'/news/' + props.id}>{props.title}</Link>
+			      	<Link to={'/news/' + id}>{title}</Link>
 			      </CardTitle>
-			      	<CardSubtitle><b>{props.creator}</b> | Created {formatDate(props.date)}</CardSubtitle>
-			      <CardText>{shortString(props.text)}</CardText>
+			      	<CardSubtitle><b>{creator}</b> | Created {formatDate(date)}</CardSubtitle>
+			      <CardText>{shortString(text)}</CardText>
 			    </CardBody>
 			    {
 			    	isAuthor() 
@@ -41,7 +48,7 @@ export const CardItem = (props) => {
 				    		className="icon icon-delete" 
 				    		onClick={deleteOne}
 			    		/>
-			    		<Link to={`/news/${props.id}/edit`}>
+			    		<Link to={`/news/${id}/edit`}>
 			    			<FontAwesome.FaEdit className="icon icon-edit" />
 			    		</Link>
 			    	</div> 

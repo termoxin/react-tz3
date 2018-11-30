@@ -1,5 +1,5 @@
 import { AUTH_URL } from '../constants/api'
-import { AUTH_USER, USER_LOGOUT } from '../constants/action-types'
+import { AUTH_USER, USER_LOGOUT, AUTH_FAILURE} from '../constants/action-types'
 import { checkResponse } from '../helpers/network'
 import axios from 'axios'
 
@@ -9,6 +9,11 @@ export const authSuccess = (user, token='') => ({
 		user,
 		token
 	}
+})
+
+export const authFailure = error => ({
+	type: AUTH_FAILURE,
+	payload: error
 })
 
 export const logoutUser = () => ({

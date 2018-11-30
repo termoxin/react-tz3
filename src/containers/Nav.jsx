@@ -28,7 +28,7 @@ class Navigation extends Component {
     }
 
     render() {
-        const { isAuth, user} = this.props
+        const { isAuth, user } = this.props
         return(
             <div className="nav">
                <Navbar color="dark" dark>
@@ -77,20 +77,20 @@ class Navigation extends Component {
 }
 
 Navigation.propTypes = {
-    authUser: PropTypes.func,
-    isAuth: PropTypes.bool,
-    logout: PropTypes.func,
-    user: PropTypes.object
+  authUser: PropTypes.func,
+  isAuth: PropTypes.bool,
+  logout: PropTypes.func,
+  user: PropTypes.object
 }
 
 const mapDispatchToProps = dispatch => ({
-    authUser: (user, token) => dispatch(authUser(user, token)),
-    logout: () => dispatch(logoutUser())
+  authUser: (user, token) => dispatch(authUser(user, token)),
+  logout: () => dispatch(logoutUser())
 })
 
 const mapStateToProps = state => ({
-    isAuth: state.user.isAuth,
-    user: state.user
+  isAuth: state.user.isAuth,
+  user: state.user
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation)

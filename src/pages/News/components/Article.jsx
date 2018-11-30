@@ -44,7 +44,7 @@ class Article extends Component {
 			return (
 				<div className="article">
 					<h1>{feed.title}</h1>
-					<span>{feed.creator.displayName} | {formatDate(feed.createDate)}</span>
+					<span>{feed.creator.displayName} | Created {formatDate(feed.createDate)}</span>
 					<p>{feed.content}</p>
 					<div className="controls">
 						{

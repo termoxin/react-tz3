@@ -18,6 +18,9 @@ function reducer(state = {
 		case "EDIT_FAILURE": {
 			return {...state, error: action.payload}
 		}
+		case "AUTH_FAILURE": {
+			return {...state, error: action.payload}
+		}
 		default: {
 			return state
 		}

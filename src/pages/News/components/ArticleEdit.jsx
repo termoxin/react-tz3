@@ -11,11 +11,13 @@ class ArticleEdit extends Component {
 		fetched: false
 	}
 	componentDidMount() {
-		this.props.getANews(this.props.match.params.id, () => {
+		const { match, Anews } = this.props
+		
+		this.props.getANews(match.params.id, () => {
 			this.setState({
 				fetched: true,
-				title: this.props.Anews.feed.title,
-				text: this.props.Anews.feed.content,
+				title: Anews.feed.title,
+				text: Anews.feed.content,
 			})
 		})
 	}
@@ -25,12 +27,13 @@ class ArticleEdit extends Component {
 	    });
  	};
  	editFeed = () => {
+ 		const { title, text } = this.state
  		const id    = this.props.Anews.feed._id
  		const token = this.props.user.user.token
  		
  		this.props.editFeed(id, {
- 			title: this.state.title,
- 			content: this.state.text
+ 			title: title,
+ 			content: text
  		}, token, () => {
  			this.props.getFeeds(() => {
  				this.props.history.push('/news')
