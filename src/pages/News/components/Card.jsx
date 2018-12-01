@@ -13,7 +13,7 @@ export const CardItem = (props) => {
 	const isAuthor = () => {
 		const { isAuth, user, creator } = props
 
-		if(isAuth && user.user.givenName === creator.split(' ')[0]) {
+		if(isAuth && user.user.user.givenName === creator.split(' ')[0]) {
 			return true
 		}
 		return false
@@ -48,7 +48,10 @@ export const CardItem = (props) => {
 				    		className="icon icon-delete" 
 				    		onClick={deleteOne}
 			    		/>
-			    		<Link to={`/news/${id}/edit`}>
+			    		<Link to={{
+			    			pathname: `/news/${id}/edit`,
+			    			state: { id }
+			    		}}>
 			    			<FontAwesome.FaEdit className="icon icon-edit" />
 			    		</Link>
 			    	</div> 

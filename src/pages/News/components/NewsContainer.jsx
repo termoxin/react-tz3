@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { getFeeds } from '../actions'
+import PrivateRoute from '../../../components/PrivateRoute'
 import { connect } from 'react-redux'
 import NewsList  from './NewsList'
 import { Route, Switch } from 'react-router-dom'
@@ -37,7 +38,9 @@ class NewsContainer extends Component {
         <div className="news">
             <Switch>
               <Route exact path="/news/:id" component={Article}/>
-              <Route exact path="/news/:id/edit" component={ArticleEdit}/>
+              <Route exact path="/news/:id/edit">
+                <PrivateRoute component={ArticleEdit}/>
+              </Route>
               <Route path="/news" render={() => (
                 this.state.fetched 
                 ? 

@@ -11,13 +11,13 @@ class ArticleEdit extends Component {
 		fetched: false
 	}
 	componentDidMount() {
-		const { match, Anews } = this.props
-		
-		this.props.getANews(match.params.id, () => {
+		const { match, getANews } = this.props
+
+		getANews(match.params.id, () => {
 			this.setState({
 				fetched: true,
-				title: Anews.feed.title,
-				text: Anews.feed.content,
+				title: this.props.Anews.feed.title,
+				text: this.props.Anews.feed.content,
 			})
 		})
 	}
@@ -25,7 +25,7 @@ class ArticleEdit extends Component {
 	    this.setState({
 	      [name]: event.target.value,
 	    });
- 	};
+ 	}
  	editFeed = () => {
  		const { title, text } = this.state
  		const id    = this.props.Anews.feed._id
@@ -88,7 +88,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 	getANews: (id, cb) => dispatch(getANews(id, cb)),
 	editFeed: (id, feed, token, cb) => dispatch(editFeed(id, feed, token, cb)),
-	getFeeds: (cb) => dispatch(getFeeds(cb))
+	getFeeds: cb => dispatch(getFeeds(cb))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleEdit)
