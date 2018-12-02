@@ -21,20 +21,17 @@ export const logoutUser = () => ({
 })
 
 export const authUser = (user, token) => {
-	return function(dispatch) {
-		if(!token) return;
+	return async dispatch => {
+		try {
+			if(!token) return;
 
-		axios.post(AUTH_URL, {
-			token
-		})
-		.then(response => {
-			const { data } = response
+			let response = await axios.post(AUTH_URL, { token })
+
 			if(checkResponse(response)) {
-				dispatch(authSuccess(user, data.token))
+				dispatch(authSuccess(user, response.data.token))
 			}
-		})
-		.catch(error => {
-			console.log(error)
-		}) 
+		} catch(err) {
+			dispatch(authFailure(err))
+		}
 	}
 }

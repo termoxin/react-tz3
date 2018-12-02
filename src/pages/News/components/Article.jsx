@@ -18,13 +18,15 @@ class Article extends Component {
 		}
 	} 
 	componentDidMount() {
-		this.props.getANews(this.props.match.params.id, () => {
+		const { getANews, match } = this.props
+
+		getANews(match.params.id, () => {
 			this.setState({
 				fetched: true
 			})
 		})
 	}
-	isAuthor = (creator) => {
+	isAuthor = creator => {
 		const { isAuth, user } = this.props
 		if(isAuth && user.user.user.givenName === creator.split(' ')[0]) return true
 		return false

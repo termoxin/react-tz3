@@ -51,61 +51,67 @@ export const editFailure = error => ({
 })
 
 export const getANews = (id, cb) => {
-	return function(dispatch) {
-		axios(GET_FEEDS + `/${id}`)
-			.then(response => {
-				if(checkResponse(response)) {
-					dispatch(getANewsSuccess(response.data))
-					cb()
-				}
-			})
-			.catch(error => dispatch(getANewsFailure(error)))
+	return async dispatch => {
+		try {
+			let response = await axios(GET_FEEDS + `/${id}`)
+
+			if(checkResponse(response)) {
+				dispatch(getANewsSuccess(response.data))
+				cb()
+			}
+		} catch(err) {
+			dispatch(getANewsFailure(err.message))
+		}
 	}
 }
 
-export const getFeeds = (cb) => {
-	return function(dispatch) {
-		axios(GET_FEEDS)
-			.then(response => {
-				if(checkResponse(response)) {
-					dispatch(getSuccess(response.data.feeds))
-					cb()
-				}
-			})
-			.catch(error => dispatch(getFailure(error.message)))
+export const getFeeds = cb => {
+	return async dispatch => {
+		try {
+			let response = await axios(GET_FEEDS)
+
+			if(checkResponse(response)) {
+				dispatch(getSuccess(response.data.feeds))
+				cb()
+			}
+		} catch(err) {
+			dispatch(getFailure(err.message))
+		}
 	}
 }
 
 export const deleteFeed = (id, token, cb) => {
-	return function(dispatch) {
-		axios.delete(API_URL + `/feeds/${id}`, {
-			headers: {
-				'x-access-token': token
-			}
-		})
-		.then(response => {
+	return async dispatch => {
+		try {
+			let response = await axios.delete(API_URL + `/feeds/${id}`, {
+				headers: {
+					'x-access-token': token
+				}
+			})
 			if(checkResponse(response)) {
 				dispatch(deleteSuccess(response))
 				cb()
 			}
-		})
-		.catch(error => dispatch(deleteFailure(error.message)))
+		} catch(err) {
+			dispatch(deleteFailure(err.message))
+		}
 	}
 }
 
 export const editFeed = (id, feed, token, cb) => {
-	return function(dispatch) {
-		axios(API_URL + `/feeds/${id}`, {
-			method: 'PUT',
-			data: feed,
-			headers: {'x-access-token': token }
-		})
-		.then(response => {
+	return async dispatch => {
+		try {
+			let response = await axios(API_URL + `/feeds/${id}`, {
+				method: 'PUT',
+				data: feed,
+				headers: {'x-access-token': token }
+			})
 			if(checkResponse(response)) {
 				dispatch(editSuccess(response))
 				cb()
 			}
-		})
-		.catch(error => dispatch(editFailure(error.message)))
+		} catch(err) {
+			dispatch(editFailure(err.message))
+		}
 	}
 }
