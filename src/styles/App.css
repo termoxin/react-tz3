@@ -74,3 +74,17 @@
 .register-button {
 	margin-top:20px;
 }
+.notification {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	position: relative;
+	top:20px;
+	align-items: center;
+}
+.login-button a {
+	color: white;
+}
+.login-button {
+	margin: 0 0 0 10px;
+}

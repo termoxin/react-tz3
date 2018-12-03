@@ -1,4 +1,4 @@
-import { AUTH_URL, NEW_USER } from '../constants/api'
+import { NEW_USER } from '../constants/api'
 import { 
 	NEW_USER_SUCCESS, 
 	NEW_USER_FAILURE
@@ -29,7 +29,7 @@ export const registerUser = (name, password, captcha, cb) => {
 				cb()
 			}
 		} catch(err) {
-			dispatch(newUserFailure(err.message))
+			dispatch(newUserFailure(err.response.data.error))
 		}
 	}
 }

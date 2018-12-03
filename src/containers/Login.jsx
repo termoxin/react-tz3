@@ -1,52 +1,43 @@
 import React, { Component } from 'react'
-import ReCAPTCHA from "react-google-recaptcha"
-import { connect } from 'react-redux'
-import { registerUser } from '../actions/registerAction'
 import { validatePassword, validateUsername } from '../helpers/validators'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
-class Registration extends Component {
+class Login extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
 			username: '',
-			password: '',
-			isValidate: false
+			password: ''
 		}
-
-		this.recaptchaRef = React.createRef()
 	}
 
 	handleChange = name => event => {
 	    this.setState({
 	      [name]: event.target.value,
 	    });
- 	};
+ 	}
 
-	isValidate() {
-		const recaptchaValue = this.recaptchaRef.current.getValue()
-		const { username, password } = this.state
-
-		if(!!recaptchaValue && validateUsername(username) && validatePassword(password)) {
-			return true
-		} 
-	}
-	onSubmit = (e) => {
+ 	onSubmit = (e) => {
 		e.preventDefault()
-		const { username, password } = this.state
-		const captcha = this.recaptchaRef.current.getValue()
-
-		this.props.registerUser(username, password, captcha, () => {
-			this.props.history.push('/news')
-		})
+		
+		console.log(this.state.username, this.state.password)
 	}	
-	onChange = () => {
+
+ 	onChange = () => {
 		if(this.isValidate()) {
 			this.setState({ isValidate: true })
 		} else {
 			this.setState({ isValidate: false })
 		}
+	}
+
+	isValidate() {
+		const { username, password } = this.state
+
+		if(validateUsername(username) && validatePassword(password)) {
+			return true
+		} 
 	}
 	render() {
 		return(
@@ -56,7 +47,6 @@ class Registration extends Component {
 				        <FormGroup>
 				          <Label for="title">Username</Label>
 				          <Input 
-				              ref={this.username}
 					          type="text" 
 					          name="Username" 
 					          id="Username" 
@@ -66,21 +56,17 @@ class Registration extends Component {
 				        </FormGroup>
 				        <FormGroup>
 				          <Label for="text">Password</Label>
-				          <Input
+				          <Input 
 					          type="password" 
 					          name="password" 
 					          placeholder="Password..." 
 					          onChange={this.handleChange('password')}
 				          />
 				        </FormGroup>
-				        <ReCAPTCHA
-				       		sitekey="6Lf8yzMUAAAAANw9ylYiGxK-4etO5LKXEvCivQJt"
-						/>
 				        <Button 
 					        color="success" 
-					        className="register-button"
 					        disabled={!this.state.isValidate}
-				        >Регистрация</Button>
+				        >Войти</Button>
 			      	</Form>
 			 	 </div>
 			</div>
@@ -88,8 +74,4 @@ class Registration extends Component {
 	}
 }
 
-const mapDispatchToProps = dispatch => ({
-	registerUser: (name, password, captcha, cb) => dispatch(registerUser(name, password, captcha, cb))
-})
-
-export default connect(null, mapDispatchToProps)(Registration)
+export default Login

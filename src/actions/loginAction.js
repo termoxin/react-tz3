@@ -1,10 +1,8 @@
-import { AUTH_URL, NEW_USER } from '../constants/api'
+import { AUTH_URL } from '../constants/api'
 import { 
 	AUTH_USER, 
 	USER_LOGOUT, 
-	AUTH_FAILURE, 
-	NEW_USER_SUCCESS, 
-	NEW_USER_FAILURE
+	AUTH_FAILURE
 } from '../constants/action-types'
 import { checkResponse } from '../helpers/network'
 import axios from 'axios'

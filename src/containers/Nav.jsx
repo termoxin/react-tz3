@@ -14,12 +14,12 @@ import * as FontAwesome from 'react-icons/fa'
 
 
 class Navigation extends Component {
-    authSuccess = (res) => {
+    authSuccess = res => {
         const { profileObj, tokenId } = res
         this.props.authUser(profileObj, tokenId)
     }
 
-    authError = (res) => {
+    authError = res => {
         console.log(res)
     }
 
@@ -67,12 +67,17 @@ class Navigation extends Component {
                                       color="primary" 
                                       onClick={renderProps.onClick}
                                     >
-                                    <FontAwesome.FaUser /> Войти
+                                    <FontAwesome.FaUser /> Войти через <FontAwesome.FaGooglePlus />
                                     </Button>
                                  )}
                                  onSuccess={this.authSuccess}
                                  onFailure={this.authError}
                              />
+                             <Button color="success" className="login-button">
+                              <Link to="/login">
+                                  <FontAwesome.FaPaperPlane /> Войти 
+                                </Link>
+                             </Button>
                             </div>
                       }
                       </NavItem>
