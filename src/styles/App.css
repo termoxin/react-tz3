@@ -65,3 +65,12 @@
 .news div:first-child {
 	width:100%;
 }
+.registration {
+	margin: 0 10px 0 10px;
+}
+.registration a {
+	color: white;
+}
+.register-button {
+	margin-top:20px;
+}

@@ -2,3 +2,5 @@
 export const AUTH_USER = "AUTH_USER"
 export const AUTH_FAILURE = "AUTH_FAILURE"
 export const USER_LOGOUT = "USER_LOGOUT"
+export const NEW_USER_SUCCESS = "NEW_USER_SUCCESS"
+export const NEW_USER_FAILURE = "NEW_USER_FAILURE"

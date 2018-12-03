@@ -21,6 +21,9 @@ function reducer(state = {
 		case "AUTH_FAILURE": {
 			return {...state, error: action.payload}
 		}
+		case "NEW_USER_FAILURE": {
+			return {...state, error: action.payload}
+		}
 		default: {
 			return state
 		}

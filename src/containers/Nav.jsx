@@ -53,7 +53,13 @@ class Navigation extends Component {
                                 onLogoutSuccess={this.logout}
                             />
                             :
-                            <GoogleLogin
+                            <div>
+                              <Button color="primary" className="registration">
+                                <Link to="/registration">
+                                  <FontAwesome.FaStreetView /> Регистрация 
+                                </Link>
+                              </Button>
+                              <GoogleLogin
                                  clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                                  buttonText="Войти"
                                  render={renderProps => (
@@ -61,12 +67,13 @@ class Navigation extends Component {
                                       color="primary" 
                                       onClick={renderProps.onClick}
                                     >
-                                      Войти <FontAwesome.FaUser />
+                                    <FontAwesome.FaUser /> Войти
                                     </Button>
                                  )}
                                  onSuccess={this.authSuccess}
                                  onFailure={this.authError}
                              />
+                            </div>
                       }
                       </NavItem>
                     </Nav>
