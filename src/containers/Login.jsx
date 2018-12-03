@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { validatePassword, validateUsername } from '../helpers/validators'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import { authUserWithPassword } from '../actions/loginAction'
+import { connect } from 'react-redux'
 
 class Login extends Component {
 	constructor(props) {
@@ -21,7 +23,11 @@ class Login extends Component {
  	onSubmit = (e) => {
 		e.preventDefault()
 		
-		console.log(this.state.username, this.state.password)
+		const { username, password } = this.state
+		
+		this.props.authUserWithPassword(username, password, () => {
+			this.props.history.push('/news')
+		})
 	}	
 
  	onChange = () => {
@@ -74,4 +80,8 @@ class Login extends Component {
 	}
 }
 
-export default Login
+const mapDispatchToProps = dispatch => ({
+	authUserWithPassword: (username, password, cb) => dispatch(authUserWithPassword(username, password, cb))
+})
+
+export default connect(null, mapDispatchToProps)(Login)

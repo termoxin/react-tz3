@@ -24,6 +24,14 @@ function reducer(state = {
 		case "NEW_USER_FAILURE": {
 			return {...state, error: action.payload}
 		}
+		case "AUTH_USER_WITH_PASSWORD_FAILURE": {
+			return {...state, error: action.payload}
+		}
+		case "AUTH_USER_WITH_PASSWORD_SUCCESS": {
+			return {...state, user: 
+				{token: action.payload.token, 
+					user: {givenName: action.payload.givenName }}, isAuth: true}
+		}
 		default: {
 			return state
 		}
