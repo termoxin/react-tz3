@@ -39,7 +39,6 @@ export const authFailureWithPassword = error => ({
 	payload: error
 })
 
-
 export const authUser = (user, token) => {
 	return async dispatch => {
 		try {

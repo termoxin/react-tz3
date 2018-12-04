@@ -20,19 +20,7 @@ class NewsContainer extends Component {
 		})
 	}
     render() {
-    	const { news, user } = this.props
-
-    	const loadingOrError = () => {
-    		if(user.error) return (
-    			<Alert color="danger">
-       				{user.error}
-     	 		</Alert>
-    		) 
-			return (
-				<Alert color="warning">Loading...</Alert> 
-			)
-
-    	}
+    	const { news } = this.props
 
        return(
         <div className="news">
@@ -46,7 +34,7 @@ class NewsContainer extends Component {
                 ? 
                 <NewsList news={news.news} />
                 :  
-                loadingOrError()
+                <Alert color="warning">Loading...</Alert> 
               )}/>
             </Switch>
         </div>

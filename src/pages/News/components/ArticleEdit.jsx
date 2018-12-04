@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
 import { getANews, editFeed, getFeeds } from '../actions'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
@@ -69,13 +70,16 @@ class ArticleEdit extends Component {
 					          onChange={this.handleChange('text')} 
 				          />
 				        </FormGroup>
-				        <Button color="success" onClick={this.editFeed}>Submit</Button>
+				        <Button color="success" onClick={this.editFeed}>Сохранить</Button>
+				        <Link to="/news">
+				        	<Button color="danger" className="cancel">Отмена</Button>
+				        </Link>
 			      	</Form>
 			 	 </div>
 		 	 	:
 		 	 	<Redirect to="/news"/>
 		 	:
-		 	'Loading...'
+		 	<Alert color="warning">Loading...</Alert> 
 		)
 	}
 }

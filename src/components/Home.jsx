@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
+import { Redirect } from 'react-router-dom'
 const Home = () => (
     <div>
-        <Link to="/news">News</Link>
+		<Redirect to="/news" />
     </div>
 )
 

@@ -21,7 +21,7 @@ export const CardItem = (props) => {
 	const deleteOne = () => {
 		const { deleteFeed, id, user } = props
 
-		deleteFeed(id, user.token, () => {
+		deleteFeed(id, user.user.token, () => {
 			props.getFeeds(() => {
 				console.log('%c Deleted successfully!', 'font-weight:700; color: red')
 			})

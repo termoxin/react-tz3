@@ -89,7 +89,7 @@ export const deleteFeed = (id, token, cb) => {
 				}
 			})
 			if(checkResponse(response)) {
-				dispatch(deleteSuccess(response))
+				dispatch(deleteSuccess())
 				cb()
 			}
 		} catch(err) {
