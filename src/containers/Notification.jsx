@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Alert } from 'reactstrap'
 import { connect } from 'react-redux'
 
@@ -26,6 +27,10 @@ class Notification extends Component {
 			</div>
 		)
 	}
+}
+
+Notification.propTypes = {
+	errorMsg: PropTypes.string
 }
 
 const mapStateToProps = state => ({

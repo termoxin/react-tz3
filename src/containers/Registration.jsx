@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReCAPTCHA from "react-google-recaptcha"
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { registerUser } from '../actions/registerAction'
 import { validatePassword, validateUsername } from '../helpers/validators'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
@@ -74,6 +75,7 @@ class Registration extends Component {
 				          />
 				        </FormGroup>
 				        <ReCAPTCHA
+				        	ref={this.recaptchaRef}
 				       		sitekey="6Lf8yzMUAAAAANw9ylYiGxK-4etO5LKXEvCivQJt"
 						/>
 				        <Button 
@@ -86,6 +88,10 @@ class Registration extends Component {
 			</div>
 		)
 	}
+}
+
+Registration.propTypes = {
+	registerUser: PropTypes.func
 }
 
 const mapDispatchToProps = dispatch => ({

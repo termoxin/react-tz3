@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { getANews, editFeed, getFeeds } from '../actions'
 import { connect } from 'react-redux'
@@ -77,6 +78,15 @@ class ArticleEdit extends Component {
 		 	'Loading...'
 		)
 	}
+}
+
+ArticleEdit.propTypes = {
+	Anews: PropTypes.object,
+	editFeed: PropTypes.func.isRequired,
+	getANews: PropTypes.func.isRequired,
+	getFeeds: PropTypes.func.isRequired,
+	isAuth: PropTypes.bool,
+	user: PropTypes.object
 }
 
 const mapStateToProps = state => ({

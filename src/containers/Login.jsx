@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { validatePassword, validateUsername } from '../helpers/validators'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { authUserWithPassword } from '../actions/loginAction'
@@ -78,6 +79,10 @@ class Login extends Component {
 			</div>
 		)
 	}
+}
+
+Login.propTypes = {
+	authUserWithPassword: PropTypes.func
 }
 
 const mapDispatchToProps = dispatch => ({
