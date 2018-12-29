@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
-import { getANews, editFeed, getFeeds } from '../actions'
+import { getANews, editFeed } from '../actions/aNewAction'
+import { getFeeds } from '../actions/newsAction' 
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
@@ -18,8 +19,8 @@ class ArticleEdit extends Component {
 		getANews(match.params.id, () => {
 			this.setState({
 				fetched: true,
-				title: this.props.Anews.feed.title,
-				text: this.props.Anews.feed.content,
+				title: this.props.new.feed.title,
+				text: this.props.new.feed.content,
 			})
 		})
 	}
@@ -30,7 +31,7 @@ class ArticleEdit extends Component {
  	}
  	editFeed = () => {
  		const { title, text } = this.state
- 		const id    = this.props.Anews.feed._id
+ 		const id    = this.props.new.feed._id
  		const token = this.props.user.user.token
  		
  		this.props.editFeed(id, {
@@ -94,7 +95,7 @@ ArticleEdit.propTypes = {
 }
 
 const mapStateToProps = state => ({
-	Anews: state.news.Anews,
+	new: state.news.new,
 	isAuth: state.user.isAuth,
 	user: state.user
 })

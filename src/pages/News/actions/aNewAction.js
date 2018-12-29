@@ -1,30 +1,18 @@
 import axios from 'axios'
-import { GET_FEEDS, API_URL } from '../../constants/api.js'
+import { GET_FEEDS, API_URL } from '../../../constants/api.js'
 import { 
-	GET_NEWS, 
-	GET_NEWS_FAILURE, 
 	GET_A_NEWS, 
 	GET_A_NEWS_FAILURE,
 	DELETE_FAILURE,
 	DELETE_SUCCESS,
 	EDIT_SUCCESS,
 	EDIT_FAILURE
-} from './actionTypes'
-import { checkResponse } from '../../helpers/network'
+} from '../actionTypes'
+import { checkResponse } from '../../../helpers/network'
 
-export const getSuccess = feeds => ({
-	type: GET_NEWS,
-	payload: feeds
-})
-
-export const getFailure = error => ({
-	type: GET_NEWS_FAILURE,
-	payload: error
-})
-
-export const getANewsSuccess = Anews => ({
+export const getANewsSuccess = Anew => ({
 	type: GET_A_NEWS,
-	payload: Anews
+	payload: Anew
 }) 
 
 export const getANewsFailure = error => ({
@@ -61,21 +49,6 @@ export const getANews = (id, cb) => {
 			}
 		} catch(err) {
 			dispatch(getANewsFailure(err.message))
-		}
-	}
-}
-
-export const getFeeds = cb => {
-	return async dispatch => {
-		try {
-			let response = await axios(GET_FEEDS)
-
-			if(checkResponse(response)) {
-				dispatch(getSuccess(response.data.feeds))
-				cb()
-			}
-		} catch(err) {
-			dispatch(getFailure(err.message))
 		}
 	}
 }

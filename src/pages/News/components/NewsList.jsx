@@ -6,7 +6,7 @@ const NewsList = (props) => (
 	<div className="container">
 		<div className="row row-eq-height">
 			{
-				props.news.map(item => (
+				props.news.news.map(item => (
 					<CardItem
 						key={item._id} 
 						id={item._id}

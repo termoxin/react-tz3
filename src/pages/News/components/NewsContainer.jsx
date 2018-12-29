@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getFeeds } from '../actions'
+import { getFeeds } from '../actions/newsAction'
 import PrivateRoute from '../../../components/PrivateRoute'
 import { connect } from 'react-redux'
 import NewsList  from './NewsList'
